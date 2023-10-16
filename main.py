@@ -80,7 +80,7 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 # Load the fine-tuned model
-model = GPT2LMHeadModel.from_pretrained("/content/shamy")
+model = GPT2LMHeadModel.from_pretrained("/model/")
 #tokenizer = GPT2Tokenizer.from_pretrained("/content/shamy")
 
 # Set the device to GPU if available, otherwise use CPU
