@@ -2,7 +2,7 @@
 
 ## About
 
-**UZ Health Access** is a project created by Victor Marisa and Shamiso Makangainwa, both part 4 students at the University of Zimbabwe. The project's aim is to provide free access to quality health information and resources to University of Zimbabwe students.
+**UZ Health Chatbot** is a project created by Victor Marisa and Shamiso Makangainwa, both part 4 students at the University of Zimbabwe. The project's aim is to provide free access to quality health information and resources to University of Zimbabwe students.
 
 ## Features
 
