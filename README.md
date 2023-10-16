@@ -11,6 +11,9 @@
 - User-friendly interface.
 - Accessible online and offline.
 
+## Colab file
+- https://colab.research.google.com/drive/18UCJMHBLRUluhS0qRqxX92wn7wJefBXc#scrollTo=4gmeQ96mZaW6
+
 ## Getting Started
 
 To run the application locally, you'll need to clone the repository and install the required dependencies. Here are the instructions:
