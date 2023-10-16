@@ -9,3 +9,4 @@ opencv-python-headless
 matplotlib
 transformers
 torch
+gdown
