@@ -1,47 +1,53 @@
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_schedule_with_warmup
 import torch
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-import gdown
-import os
-import requests
+from torch.utils.data import DataLoader, TensorDataset
 
-# Replace 'YOUR_FILE_URL' with the direct download link you obtained from Google Drive.
-file_url = "https://drive.google.com/drive/folders/1LcyoTshbw7QCXKbRVbTku0VULTaDi-OK?usp=sharing"
-output_path = "model"  # Specify the path where you want to save the downloaded model files.
+# Load the tokenizer for your GPT model
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
-gdown.download(file_url, output_path, quiet=False)
+# Define your text here
+text = "Your text here"
 
-r = requests.get(file_url, stream=True)
-with open('./pytorch_model.bin', 'wb') as f:
-    for chunk in r.iter_content(chunk_size=1024):
-        if chunk:
-            f.write(chunk)
-print("Finished downloading model.")
+# Tokenize the text
+tokenized_text = tokenizer.encode(text, add_special_tokens=True, truncation=True, max_length=1024)
 
+# Convert tokenized_text to PyTorch tensors
+input_ids = torch.tensor([tokenized_text])
 
-# Load the fine-tuned model
-link = "https://drive.google.com/drive/folders/1LcyoTshbw7QCXKbRVbTku0VULTaDi-OK?usp=sharing"
-model = GPT2LMHeadModel.from_pretrained("/model/")
-tokenizer = GPT2Tokenizer.from_pretrained("/model/")
+# Create a DataLoader
+dataset = TensorDataset(input_ids)
+train_dataloader = DataLoader(dataset, batch_size=1)
 
-# Set the device to GPU if available, otherwise use CPU
+# Load a pre-trained GPT model
+model_name = "gpt2" 
+model = GPT2LMHeadModel.from_pretrained(model_name)
+
+# Define the optimizer and learning rate scheduler
+optimizer = AdamW(model.parameters(), lr=1e-4)
+scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=len(train_dataloader))
+
+# Fine-tuning loop
+num_epochs = 3  # You can adjust this
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model.to(device)
 
-# Function to generate a response
-def generate_response(prompt, max_length=50):
-    input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
-    with torch.no_grad():
-        output = model.generate(input_ids, max_length=max_length, num_return_sequences=1, no_repeat_ngram_size=2)
-    response = tokenizer.decode(output[0], skip_special_tokens=True)
-    return response
+for epoch in range(num_epochs):
+    model.train()
+    for batch in train_dataloader:
+        input_ids = batch[0].to(device)
+        labels = batch[0].to(device)
 
-# Main loop for interacting with the chatbot
-while True:
-    user_input = input("You: ")
+        outputs = model(input_ids, labels=labels)
+        loss = outputs.loss
 
-    if user_input.lower() == "exit":
-        print("Chatbot: Goodbye!")
-        break
+        loss.backward()
+        optimizer.step()
+        scheduler.step()
+        optimizer.zero_grad()
 
-    response = generate_response(user_input, max_length=50)
-    print("Chatbot:", response)
+# Save the fine-tuned model
+model_dir = "./model/"
+model.save_pretrained(model_dir)
+
+# Load the fine-tuned model
+model = GPT2LMHeadModel.from_pretrained(model_dir)
