@@ -3,7 +3,7 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 # Load the fine-tuned model from Google Drive
-model = GPT2LMHeadModel.from_pretrained("https://drive.google.com/uc?id=your-model-id")
+model = GPT2LMHeadModel.from_pretrained("https://drive.google.com/drive/folders/1LcyoTshbw7QCXKbRVbTku0VULTaDi-OK?usp=sharing")
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
 # Set the device to GPU if available, otherwise use CPU
