@@ -14,6 +14,24 @@ output_file = "./model/pytorch_model.bin"
 # Download the file
 gdown.download(google_drive_url, output_file, quiet=False)
 
+import os
+
+# Define the directory path you want to list files from
+directory_path = "/path/to/your/directory"
+
+# Check if the directory exists
+if os.path.exists(directory_path) and os.path.isdir(directory_path):
+    # List all files in the directory
+    files = os.listdir(directory_path)
+    
+    # Print the list of files
+    print("Files in the directory:")
+    for file in files:
+        print(file)
+else:
+    print(f"The directory '{directory_path}' does not exist.")
+
+
 st.title('Victor Marisa and Shamiso Makangainwa')
 st.title('Uz Health Chatbot')
 
