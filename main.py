@@ -1,6 +1,19 @@
 import streamlit as st
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import gdown
+#download the files
+
+
+# Replace this URL with the shareable link of the file you want to downloadhttps://drive.google.com/file/d/1-U9TxExWFDO5jneQ3vG-oGzTyPzmPjA7/view?usp=sharing
+google_drive_url = "https://drive.google.com/file/d/1-13ryvVrNzD8dnGeqUQztLGWMOOeS6_M/view?usp=sharing"
+
+# Specify the output file path
+output_file = "./model/pytorch_model.bin"
+
+# Download the file
+gdown.download(google_drive_url, output_file, quiet=False)
+
 
 # Load the fine-tuned model from Google Drive
 model = GPT2LMHeadModel.from_pretrained("./model/")
