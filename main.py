@@ -14,6 +14,9 @@ output_file = "./model/pytorch_model.bin"
 # Download the file
 gdown.download(google_drive_url, output_file, quiet=False)
 
+st.title('Victor Marisa and Shamiso Makangainwa')
+st.title('Uz Health Chatbot')
+
 
 # Load the fine-tuned model from Google Drive
 model = GPT2LMHeadModel.from_pretrained("./model/")
