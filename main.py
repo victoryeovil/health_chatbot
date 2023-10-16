@@ -2,6 +2,7 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import gdown
 import os
+import requests
 
 # Replace 'YOUR_FILE_URL' with the direct download link you obtained from Google Drive.
 file_url = "https://drive.google.com/drive/folders/1LcyoTshbw7QCXKbRVbTku0VULTaDi-OK?usp=sharing"
