@@ -44,3 +44,36 @@ dataset = TensorDataset(input_ids)
 train_dataloader = DataLoader(dataset, batch_size=1)  # Batch size of 1 for simplicity
 
 # Define any additional training parameters, such as the number of epochs, learning rate, etc.
+# Import necessary libraries
+from transformers import GPT2LMHeadModel, GPT2LMHeadModel, AdamW, get_linear_schedule_with_warmup
+
+# Load a pre-trained GPT model
+model_name = "gpt2"
+model = GPT2LMHeadModel.from_pretrained(model_name)
+
+# Define the optimizer and learning rate scheduler
+optimizer = AdamW(model.parameters(), lr=1e-4)
+scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=len(train_dataloader))
+
+# Fine-tuning loop
+num_epochs = 3  # You can adjust this
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+for epoch in range(num_epochs):
+    model.train()
+    for batch in train_dataloader:
+        input_ids = batch[0].to(device)
+        labels = batch[0].to(device)
+
+        outputs = model(input_ids, labels=labels)
+        loss = outputs.loss
+
+        loss.backward()
+        optimizer.step()
+        scheduler.step()
+        optimizer.zero_grad()
+
+
+model.save_pretrained("/model/")
+
