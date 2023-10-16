@@ -1,7 +1,4 @@
 # University of Zimbabwe Health chatbot
-Certainly! Below is a sample README for your GitHub project:
-
----
 
 # UZ Health Access
 
@@ -32,10 +29,8 @@ Make sure you have the following prerequisites installed on your system:
 Use `git` to clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/uz-health-access.git
+git clone https://github.com/victoryeovil/health_chatbot.git
 ```
-
-Replace `your-username` with your GitHub username.
 
 ### Installation
 
@@ -59,16 +54,12 @@ The application will start locally, and you can access it by opening a web brows
 ## Usage
 
 - Enter your health-related queries in the provided text area.
-- Click the "Generate Response" button to get responses from the GPT-2 model.
+- Click the "Generate Response" button to get responses from the fine tuned GPT-2 model.
 - Use the application to access quality health information and resources.
 
 ## Contributing
 
 We welcome contributions to this project. Feel free to submit issues, propose new features, or contribute to the code.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
 
 ## Contact
 
@@ -76,7 +67,3 @@ For any questions or inquiries, please contact:
 
 - Victor Marisa: [victor.marisa@students.uz.ac.zw](mailto:victor.marisa@email.com)
 - Shamiso Makangainwa: [shamiso.makangainwa@students.uz.ac.zw](mailto:shamiso.makangainwa@email.com)
-
----
-
-You should customize the README by replacing placeholders like `your-username` with actual values and add any additional details about the project, usage, or contribution guidelines. Make sure to provide accurate contact information.
