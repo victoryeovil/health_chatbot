@@ -1,0 +1,11 @@
+streamlit
+streamlit_option_menu
+pyngrok
+keras
+sklearn
+tensorflow
+numpy
+opencv-python-headless
+matplotlib
+transformers
+torch
