@@ -2,8 +2,9 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 # Load the fine-tuned model
-model = GPT2LMHeadModel.from_pretrained("/model")
-#tokenizer = GPT2Tokenizer.from_pretrained("/content/shamy")
+link = "https://drive.google.com/drive/folders/1LcyoTshbw7QCXKbRVbTku0VULTaDi-OK?usp=sharing"
+model = GPT2LMHeadModel.from_pretrained(link)
+tokenizer = GPT2Tokenizer.from_pretrained(link)
 
 # Set the device to GPU if available, otherwise use CPU
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
